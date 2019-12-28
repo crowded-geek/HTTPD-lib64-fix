@@ -527,6 +527,10 @@ AC_DEFUN([APACHE_CHECK_OPENSSL],[
         dnl the system openssl.pc might be picked up instead.
         PKG_CONFIG_PATH="${ap_openssl_base}/lib/pkgconfig${PKG_CONFIG_PATH+:}${PKG_CONFIG_PATH}"
         export PKG_CONFIG_PATH
+        elif test -f "${ap_openssl_base}/lib64/pkgconfig/openssl.pc"; then	
+          PKG_CONFIG_PATH="${ap_openssl_base}/lib64/pkgconfig${PKG_CONFIG_PATH+:}${PKG_CONFIG_PATH}"	
+          export PKG_CONFIG_PATH	
+        fi
       fi
       AC_ARG_ENABLE(ssl-staticlib-deps,APACHE_HELP_STRING(--enable-ssl-staticlib-deps,[link mod_ssl with dependencies of OpenSSL's static libraries (as indicated by "pkg-config --static"). Must be specified in addition to --enable-ssl.]), [
         if test "$enableval" = "yes"; then
